@@ -14,7 +14,10 @@ The application can:
 
 ## Getting started
 
-### Pre-requisites and Local Development 
+## Live App
+Application is deployed at: `https://cast-agency-zhaspulat.onrender.com`
+
+## Pre-requisites and Local Development 
 
 Developers using this project should already have Python3 and pip installed on their local machines. Developers should also be able to create postgres databases on their local machines.
 
@@ -40,6 +43,8 @@ createdb castagency
 ```
 
 Copy `config_template.py` as `config.py` and `test_config.py`. Then edit these files with secret information.*
+
+Long-lived access tokens for each role is given in postman collection file. Copy them into `test_config.py` TOKEN variables.
 
 5. Execute `setup.sh` to create initial data.
 ```

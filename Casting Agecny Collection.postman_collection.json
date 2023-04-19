@@ -12,16 +12,6 @@
 				{
 					"name": "persons / GET",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{Asistant_Token}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -48,7 +38,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/movies?page=2",
+							"raw": "{{host}}/movies?page=1",
 							"host": [
 								"{{host}}"
 							],
@@ -58,7 +48,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -106,7 +96,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/persons?page=2",
+							"raw": "{{host}}/persons?page=1",
 							"host": [
 								"{{host}}"
 							],
@@ -116,7 +106,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -129,7 +119,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/movies?page=2",
+							"raw": "{{host}}/movies?page=1",
 							"host": [
 								"{{host}}"
 							],
@@ -139,7 +129,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -207,7 +197,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"person\":{\"name\":\"Dursune Mercan\",\"gender\":\"Female\",\"app\":\"6.18.1956\"}}",
+							"raw": "{\"person\":{\"name\":\"George Georgiou\",\"gender\":\"Male\",\"app\":\"6.18.1956\"}}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -267,13 +257,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/persons/2",
+							"raw": "{{host}}/persons/1",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"persons",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -369,7 +359,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/persons?page=2",
+							"raw": "{{host}}/persons?page=1",
 							"host": [
 								"{{host}}"
 							],
@@ -379,7 +369,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -392,7 +382,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/movies?page=2",
+							"raw": "{{host}}/movies?page=1",
 							"host": [
 								"{{host}}"
 							],
@@ -402,7 +392,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -650,13 +640,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/movies/2",
+							"raw": "{{host}}/movies/1",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"movies",
-								"2"
+								"1"
 							]
 						}
 					},

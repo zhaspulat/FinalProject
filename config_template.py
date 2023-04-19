@@ -22,3 +22,6 @@ ALGORITHMS = '[RS256]'
 API_AUDIENCE = 'agency_api'
 AUTH0_CLIENT_ID = 'cl4MFWRvc0YAZmV5T26DmvByQKO0eLQw'
 AUTH0_CLIENT_SECRET = '<secret will be provided>'
+
+PRODUCER_TOKEN = 'Bearer <Access Token>'
+ASSISTANT_TOKEN = 'Bearer <Access Token>'
