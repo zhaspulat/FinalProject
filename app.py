@@ -1,13 +1,29 @@
 import os
-import json
+import json,sys
 import dateutil.parser
 from datetime import datetime
-from flask import Flask, request, abort, jsonify, render_template, url_for, redirect , session
+from flask import (
+    Flask, 
+    request,
+    abort, 
+    jsonify, 
+    render_template, 
+    url_for, 
+    redirect , 
+    session
+)
 from urllib.parse import urlencode, quote_plus
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
-from models import Person,Mission, Movie,Participance, db, setup_db
+from models import (
+    Person,
+    Mission, 
+    Movie,
+    Participance, 
+    db, 
+    setup_db
+)
 from auth import AuthError, requires_auth
 from authlib.integrations.flask_client import OAuth
 from config import COUNT_PER_PAGE
@@ -151,8 +167,8 @@ def create_app(app_config=None):
   @requires_auth ('post:persons')
   def new_person(jwt):
     body = request.get_json()
-    searchTerm = body.get('searchTerm',None)
-    person = body.get ('person',None)
+    searchTerm = body.get('searchTerm')
+    person = body.get ('person')
 
     try:
       if searchTerm: 
@@ -171,17 +187,17 @@ def create_app(app_config=None):
       if not searchTerm:
         if person is None:
           abort (422)
-        name = person.get('name',None)
-        gender = person.get('gender',None)
+        name = person.get('name')
+        gender = person.get('gender')
         birth_date =  person.get('birth_date',datetime.now())
         new_person= Person (name =name ,
                           gender = gender ,
                           birth_date = birth_date)
         new_person.insert()
         return jsonify({'success':True ,'id': new_person.id }) 
-    except Exception as e:
+    except:
         db.session.rollback()
-        print(e)
+        print(sys.exc_info())
         abort(422)
     
 
@@ -190,8 +206,8 @@ def create_app(app_config=None):
   def new_movie(jwt):
 
     body = request.get_json()
-    movie = body.get ('movie',None)
-    searchTerm = body.get('searchTerm',None)
+    movie = body.get ('movie')
+    searchTerm = body.get('searchTerm')
     try:
       if searchTerm: 
         movies = Movie.query \
@@ -209,8 +225,8 @@ def create_app(app_config=None):
       if not searchTerm :
         if movie is None:
           abort (422)
-        name = movie.get ('name',None) 
-        genre = movie.get ('genre',None) 
+        name = movie.get ('name') 
+        genre = movie.get ('genre') 
 
         if name is None or genre is None :
           abort (422)
@@ -221,9 +237,9 @@ def create_app(app_config=None):
                       )    
         newmovie.insert()
         return jsonify({'success':True ,'id': newmovie.id }) 
-    except Exception as e:
+    except:
       db.session.rollback()
-      print(e)
+      print(sys.exc_info())
       abort(422)
     
 
@@ -232,12 +248,12 @@ def create_app(app_config=None):
   def new_participance(jwt):
 
     body = request.get_json()
-    participance = body.get ('participance', None)
+    participance = body.get ('participance')
     if participance is None:
        abort (422)
-    person_id = participance.get ('person_id',None)  
-    movie_id = participance.get ('movie_id',None) 
-    mission_id = participance.get ('mission_id',None) 
+    person_id = participance.get ('person_id')  
+    movie_id = participance.get ('movie_id') 
+    mission_id = participance.get ('mission_id') 
     person = Person.query.get_or_404(person_id)
     movie = Movie.query.get_or_404 (movie_id)
     mission = Mission.query.get_or_404(mission_id)
@@ -250,9 +266,9 @@ def create_app(app_config=None):
                           mission_id = mission_id
                       )
       newparticipance.insert()
-    except Exception as e:
+    except:
       db.session.rollback()
-      print(e)
+      print(sys.exc_info())
       abort(422)
     return jsonify({'success':True ,'id': newparticipance.id}) 
   
@@ -267,7 +283,7 @@ def create_app(app_config=None):
   def patch_movie (jwt,id):
 
     body = request.get_json()
-    data = body.get ('movie',None)
+    data = body.get ('movie')
     movie = Movie.query.filter(Movie.id == id).one_or_none()
     if movie is None :
       abort (404)
@@ -275,8 +291,8 @@ def create_app(app_config=None):
       movie.release_date = data.get('release_date',movie.release_date)
       movie.update()
       return jsonify({'success':True})   
-    except Exception as e:
-      print(e)
+    except:
+      print(sys.exc_info())
       db.session.rollback()
       abort(422)
 
@@ -286,7 +302,7 @@ def create_app(app_config=None):
   def patch_person (jwt,id):
 
     body = request.get_json()
-    data = body.get ('person',None)
+    data = body.get ('person')
     person = Person.query.filter(Person.id == id).one_or_none()
     if person is None :
       abort (404)
@@ -294,8 +310,8 @@ def create_app(app_config=None):
       person.birth_date = data.get('birth_date',person.birth_date)
       person.update()
       return jsonify({'success':True})   
-    except Exception as e:
-      print(e)
+    except:
+      print(sys.exc_info())
       db.session.rollback()
       abort(422)
 
@@ -314,9 +330,9 @@ def create_app(app_config=None):
       abort (404)
     try:
       person.delete()
-    except Exception as e:
+    except:
       db.session.rollback()
-      print(e)
+      print(sys.exc_info())
       abort(422)
     return jsonify({'success':True, 'id':id}) 
 
@@ -330,9 +346,9 @@ def create_app(app_config=None):
       abort (404)
     try:
       movie.delete()
-    except Exception as e:
+    except:
       db.session.rollback()
-      print(e)
+      print(sys.exc_info())
       abort(422)
     return jsonify({'success':True, 'id':id}) 
 

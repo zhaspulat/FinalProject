@@ -4,6 +4,8 @@
 
 The Casting Agency models a company that is responsible for creating movies and managing and assigning actors, writers and directors to those movies. Users can define, list, delete and search the movies and participance according to their roles.
 
+I built this project to help me learn Full Stack Development with Python, and also maybe to help others learn from my experience.
+
 The application can:
 
 1. Create/delete movies.
@@ -33,7 +35,7 @@ python3 venv env
 
 3. Install dependencies:
 ```
-./env/bin/pip install -r ./requirements.txt
+./env/bin/pip3 install -r ./requirements.txt
 ```
 4. Configure for local development.
 *Create Development and Test Postgres Databases*
